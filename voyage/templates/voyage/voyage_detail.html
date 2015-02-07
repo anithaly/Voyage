@@ -1,0 +1,13 @@
+{% extends 'voyage/base.html' %}
+
+{% block content %}
+    <div class="voyages place">
+        {% if place.published_date %}
+            <p class="date">
+                {{ place.published_date }}
+            </p>
+        {% endif %}
+        <h1>{{ place.name }}</h1>
+        <p>{{ place.text|linebreaks }}</p>
+    </div>
+{% endblock %}
