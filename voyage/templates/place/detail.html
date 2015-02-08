@@ -16,7 +16,7 @@
         {% include 'place/_comment_form.html' %}
     {% endif %}
 
-    {% if place.published_date%}
+    {% if place.comment_set.all and place.published_date%}
         {% include 'place/_comments.html' %}
     {% endif %}
 {% endblock %}
