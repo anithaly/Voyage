@@ -1,0 +1,22 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'place_edit' pk=place.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'place_remove' pk=place.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+    {% endif %}
+
+    <div class="voyages place">
+        <h1>{{ place.name }}</h1>
+        <p>{{ place.text|linebreaks }}</p>
+        <a class="btn btn-default" href="{% url 'voyage.views.place_publish' pk=place.pk %}">Publish</a>
+    </div>
+
+    {% if user.is_authenticated and place.published_date%}
+        {% include 'place/_comment_form.html' %}
+    {% endif %}
+
+    {% if place.published_date%}
+        {% include 'place/_comments.html' %}
+    {% endif %}
+{% endblock %}

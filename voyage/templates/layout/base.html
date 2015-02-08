@@ -14,14 +14,17 @@
             <div class="container-fluid">
                 <div class="navbar-header page-header">
                     <h1>
-                    <a href="{% url 'voyage.views.voyage_list' %}">Voyage</a>
+                    <a href="{% url 'voyage.views.place_list' %}">Voyage</a>
                     </h1>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         {% if user.is_authenticated %}
                         <li>
-                            <a href="">{{ user.username }} account</a>
+                            <a href="{% url 'place_drafts_list' %}">Drafts</a>
+                        </li>
+                        <li>
+                            <a href="">Account ({{ user.username }})</a>
                         </li>
                         <li>
                             <a href="{% url 'django.contrib.auth.views.logout' %}">Log out  </a>

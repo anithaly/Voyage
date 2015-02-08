@@ -1,5 +1,5 @@
 <h3>New comment</h3>
-<form method="POST" action="{% url 'voyage_comment_new' pk=place.pk %}">
+<form method="POST" action="{% url 'place_comment_new' pk=place.pk %}">
     {% csrf_token %}
     {{ form.non_field_errors }}
     <div class="form-group">

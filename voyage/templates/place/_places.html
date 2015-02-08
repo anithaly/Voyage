@@ -1,0 +1,13 @@
+<ul class="voyages">
+    {% for place in places %}
+        <li class="place">
+            <h3>
+                <a href="{% url 'voyage.views.place_detail' pk=place.pk %}">{{ place.name }}</a>
+            </h3>
+            <p class="date">
+                {{ place.published_date }}
+            </p>
+            <p>{{ place.text|linebreaks }}</p>
+        </li>
+    {% endfor %}
+</ul>

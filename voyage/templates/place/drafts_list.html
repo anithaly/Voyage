@@ -1,0 +1,10 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'voyage.views.place_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    {% endif %}
+
+    {% include 'place/_places.html' %}
+
+{% endblock %}
