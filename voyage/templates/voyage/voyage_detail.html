@@ -2,6 +2,7 @@
 
 {% block content %}
     <a class="btn btn-default" href="{% url 'voyage_edit' pk=place.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default" href="{% url 'voyage_remove' pk=place.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
 
     <div class="voyages place">
         <h1>{{ place.name }}</h1>
