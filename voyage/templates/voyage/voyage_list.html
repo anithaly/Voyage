@@ -1,21 +1,19 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-    <div class="col-md-8">
-        <a class="btn btn-default" href="{% url 'voyage.views.voyage_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <a class="btn btn-default" href="{% url 'voyage.views.voyage_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 
-        <ul class="voyages">
-            {% for place in places %}
-                <li class="place">
-                    <h3>
-                        <a href="{% url 'voyage.views.voyage_detail' pk=place.pk %}">{{ place.name }}</a>
-                    </h3>
-                    <p class="date">
-                        {{ place.published_date }}
-                    </p>
-                    <p>{{ place.text|linebreaks }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+    <ul class="voyages">
+        {% for place in places %}
+            <li class="place">
+                <h3>
+                    <a href="{% url 'voyage.views.voyage_detail' pk=place.pk %}">{{ place.name }}</a>
+                </h3>
+                <p class="date">
+                    {{ place.published_date }}
+                </p>
+                <p>{{ place.text|linebreaks }}</p>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock content %}

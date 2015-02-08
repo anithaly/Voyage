@@ -15,4 +15,9 @@
         {% endif %}
         <p>{{ place.text|linebreaks }}</p>
     </div>
+
+    {% include 'voyage/_voyage_comment_form.html' %}
+
+    {% include 'voyage/_voyage_comments.html' %}
+
 {% endblock %}
