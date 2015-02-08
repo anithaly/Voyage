@@ -1,8 +1,10 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-    <a class="btn btn-default" href="{% url 'voyage_edit' pk=place.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-    <a class="btn btn-default" href="{% url 'voyage_remove' pk=place.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+    {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'voyage_edit' pk=place.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'voyage_remove' pk=place.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+    {% endif %}
 
     <div class="voyages place">
         <h1>{{ place.name }}</h1>
@@ -16,7 +18,9 @@
         <p>{{ place.text|linebreaks }}</p>
     </div>
 
-    {% include 'voyage/_voyage_comment_form.html' %}
+    {% if user.is_authenticated %}
+        {% include 'voyage/_voyage_comment_form.html' %}
+    {% endif %}
 
     {% include 'voyage/_voyage_comments.html' %}
 

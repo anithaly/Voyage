@@ -1,7 +1,9 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-    <a class="btn btn-default" href="{% url 'voyage.views.voyage_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'voyage.views.voyage_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    {% endif %}
 
     <ul class="voyages">
         {% for place in places %}
