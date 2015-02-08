@@ -4,12 +4,14 @@
     <a class="btn btn-default" href="{% url 'voyage_edit' pk=place.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
     <div class="voyages place">
+        <h1>{{ place.name }}</h1>
         {% if place.published_date %}
             <p class="date">
                 {{ place.published_date }}
             </p>
+        {% else %}
+            <a class="btn btn-default" href="{% url 'voyage.views.voyage_publish' pk=place.pk %}">Publish</a>
         {% endif %}
-        <h1>{{ place.name }}</h1>
         <p>{{ place.text|linebreaks }}</p>
     </div>
 {% endblock %}

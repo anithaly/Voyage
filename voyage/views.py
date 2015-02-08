@@ -24,7 +24,7 @@ def voyage_new(request):
             return redirect('voyage.views.voyage_detail', pk=place.pk)
     else:
         form = PlaceForm()
-    return render(request, 'voyage/voyage_edit.html', {'form': form})
+    return render(request, 'voyage/voyage_form.html', {'form': form})
 
 def voyage_edit(request, pk):
     place = get_object_or_404(Place, pk=pk)
@@ -37,4 +37,13 @@ def voyage_edit(request, pk):
             return redirect('voyage.views.voyage_detail', pk=place.pk)
     else:
         form = PlaceForm(instance=place)
-    return render(request, 'voyage/voyage_edit.html', {'form': form})
+    return render(request, 'voyage/voyage_form.html', {'form': form, 'place': place})
+
+def voyage_publish(request, pk):
+    place = get_object_or_404(Place, pk=pk)
+    place.publish()
+    return redirect('voyage.views.voyage_detail', pk=pk)
+
+def voyage_draft_list(request):
+    place = Place.objects.filter(published_date__isnull=True).order_by('created_date')
+    return render(request, 'voyage/voyage_draft_list.html', {'places': places})

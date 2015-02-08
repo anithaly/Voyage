@@ -1,7 +1,13 @@
 {% extends 'voyage/base.html' %}
 
 {% block content %}
-    <h1>New voyage</h1>
+    <h1>
+        {% if place %}
+            Edit {{ place }}
+        {% else %}
+            New voyage
+        {% endif %}
+    </h1>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>

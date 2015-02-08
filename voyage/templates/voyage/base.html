@@ -11,8 +11,10 @@
         <link rel="stylesheet" href="{% static 'css/voyage.css' %}">
     </head>
     <body>
-        <div class="page-header voyages">
-            <h1><a href="">Voyage</a></h1>
+        <div class="page-header">
+            <h1>
+                <a href="{% url 'voyage.views.voyage_list' %}">Voyage</a>
+            </h1>
         </div>
 
         <div class="content container">
