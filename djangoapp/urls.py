@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^voyage/', include('voyage.urls')),
     url(r'^login$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout',
-                          # {'next_page': '/successfully_logged_out/'}
+                          {'next_page': '/'} #redirect to when logged out
     ),
     url(r'^admin/', include(admin.site.urls)),
 )
