@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from .models import Place
+from .forms import PlaceForm
 
 from django.shortcuts import render, get_object_or_404
 
@@ -8,6 +10,31 @@ def voyage_list(request):
     return render(request, 'voyage/voyage_list.html', {'places': places})
 
 def voyage_detail(request, pk):
-    # place = get_object_or_404(Place, pk=pk)
-    place = Place.objects.get(pk=pk)
+    place = get_object_or_404(Place, pk=pk)
+    # place = Place.objects.get(pk=pk)
     return render(request, 'voyage/voyage_detail.html', {'place': place})
+
+def voyage_new(request):
+    if request.method == "POST":
+        form = PlaceForm(request.POST)
+        if form.is_valid():
+            place = form.save(commit=False)
+            place.author = request.user
+            place.save()
+            return redirect('voyage.views.voyage_detail', pk=place.pk)
+    else:
+        form = PlaceForm()
+    return render(request, 'voyage/voyage_edit.html', {'form': form})
+
+def voyage_edit(request, pk):
+    place = get_object_or_404(Place, pk=pk)
+    if request.method == "POST":
+        form = PlaceForm(request.POST, instance=place)
+        if form.is_valid():
+            place = form.save(commit=False)
+            place.author = request.user
+            place.save()
+            return redirect('voyage.views.voyage_detail', pk=place.pk)
+    else:
+        form = PlaceForm(instance=place)
+    return render(request, 'voyage/voyage_edit.html', {'form': form})

@@ -2,6 +2,8 @@
 
 {% block content %}
     <div class="col-md-8">
+        <a class="btn btn-default" href="{% url 'voyage.views.voyage_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
         <ul class="voyages">
             {% for place in places %}
                 <li class="place">
